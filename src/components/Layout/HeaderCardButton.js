@@ -1,9 +1,9 @@
 import React from "react";
 import CartIcon from "../Cart/CartIcon";
 import styles from "./HeaderCardButton.module.css";
-const HeaderCardButton = () => {
+const HeaderCardButton = (props) => {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={props.isShow}>
       <span className={styles.icon}>
         <CartIcon />
       </span>

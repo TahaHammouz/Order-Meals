@@ -3,12 +3,12 @@ import styles from "./Header.module.css";
 import image from "../../assets/meals.jpg";
 import HeaderCardButton from "./HeaderCardButton";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <Fragment>
       <header className={styles.header}>
         <h1>ReactMeals</h1>
-        <HeaderCardButton/>
+        <HeaderCardButton isShow={props.OverlayisShow}/>
       </header>
       <div className={styles["main-image"]}>
         <img src={image} alt="table of delicious food" />

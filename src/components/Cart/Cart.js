@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "../UI/Modal";
 import styles from "./Cart.module.css";
-const Cart = () => {
+const Cart = (props) => {
   const cartlist = (
     <ul className={styles["cart-items"]}>
       {[{ id: "1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
@@ -10,7 +10,7 @@ const Cart = () => {
     </ul>
   );
   return (
-    <Modal>
+    <Modal HiddenOverlay={props.HiddenOverlay}>
       {cartlist}
       <div>
         <span className={styles.total}> Total Amount</span>
@@ -18,9 +18,11 @@ const Cart = () => {
       </div>
       <div className={styles.actions}>
         <button className={styles["button--alt"]}>Order</button>
-        <button className={styles.button}>Cancel</button>
+        <button className={styles.button} onClick={props.HiddenOverlay}>
+          Cancel
+        </button>
       </div>
-    </Modal>
+      </Modal>
   );
 };
 
