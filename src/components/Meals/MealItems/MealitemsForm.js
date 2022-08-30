@@ -1,12 +1,23 @@
 import Input from "../../UI/Input";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./MealitemsForm.module.css";
 
 const MealitemsForm = (props) => {
+  const [inputValid, setInvalidInput] = useState(true);
   const AmountinputRef = useRef();
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(AmountinputRef.current.value);
+    const inputAmount = AmountinputRef.current.value;
+    const inputAmountNumber = +inputAmount;
+    if (
+      inputAmount.trim() === 0 ||
+      inputAmountNumber > 5 ||
+      inputAmountNumber < 1
+    ) {
+      setInvalidInput(false);
+      return;
+    }
+    props.onAddHandler(inputAmountNumber);
   };
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
@@ -23,8 +34,8 @@ const MealitemsForm = (props) => {
         }}
       />
       <button>+ Add</button>
+      {!inputValid && <div>please enter invalid input</div>}
     </form>
   );
 };
-
 export default MealitemsForm;
